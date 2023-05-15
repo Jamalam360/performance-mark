@@ -1,0 +1,24 @@
+[package]
+name = "performance-mark-macro"
+description = "performance_mark is an attribute macro that adds performance (time) logging to methods. This crate is implementation detail, you should depend on `performance-mark` instead."
+authors = ["Jamalam <james@jamalam.tech>"]
+repository = "https://github.com/Jamalam360/performance-mark"
+categories = [
+    "development-tools",
+    "development-tools::profiling"
+]
+
+edition = "2021"
+version.workspace = true
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+proc-macro = true
+
+[dependencies]
+performance-mark-impl = { version = "^0.1.0", path = "../impl" }
+syn = { version = "2.0", features = ["full", "extra-traits"] }
+quote = "1.0"
+proc-macro2 = "1.0"
