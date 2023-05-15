@@ -34,7 +34,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: publish
-          args: -p performance-mark --token ${{ secrets.CRATES_TOKEN }}
+          args: -p performance-mark-macro --token ${{ secrets.CRATES_TOKEN }}
 
       - uses: ardalanamini/auto-changelog@v3.3.3
         id: changelog

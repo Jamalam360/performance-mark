@@ -1,6 +1,6 @@
 [package]
 name = "performance-mark-macro"
-description = "performance_mark is an attribute macro that adds performance (time) logging to methods. This crate is implementation detail, you should depend on `performance-mark` instead."
+description = "performance_mark is an attribute macro that adds performance (time) logging to methods. This crate is implementation detail, you should depend on `performance-mark-attribute` instead."
 authors = ["Jamalam <james@jamalam.tech>"]
 repository = "https://github.com/Jamalam360/performance-mark"
 categories = [

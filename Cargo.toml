@@ -1,5 +1,5 @@
 [package]
-name = "performance-mark"
+name = "performance-mark-attribute"
 description = "performance_mark is an attribute macro that adds performance (time) logging to methods."
 authors = ["Jamalam <james@jamalam.tech>"]
 repository = "https://github.com/Jamalam360/performance-mark"
