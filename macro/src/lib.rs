@@ -6,8 +6,8 @@ use syn::parse_macro_input;
 
 #[proc_macro_attribute]
 /// performance_mark is an attribute macro that adds performance (time) logging to methods.
-/// By default, it uses `println!`, but can be configured to use a custom method. 
-/// 
+/// By default, it uses `println!`, but can be configured to use a custom method.
+///
 /// Basic example:
 /// ```no_run no_test
 /// use performance_mark::performance_mark;
@@ -17,30 +17,30 @@ use syn::parse_macro_input;
 ///    println!("Hello!");
 /// }
 /// ```
-/// 
+///
 /// Example with a custom logging method:
 /// ```no_run no_test
 /// use performance_mark::{performance_mark, LogContext}
-/// 
+///
 /// #[performance_mark(log_with_this)]
 /// fn test_function_logged_using_custom_function() {
 ///    println!("Hello!");
 /// }
-/// 
+///
 /// fn log_with_this(ctx: LogContext) {
 ///     println!("Function: {} , Time: {}ms", ctx.function, ctx.duration);
 /// }
 /// ```
-/// 
+///
 /// Example with a custom async logging method:
 /// ```no_run no_test
 /// use performance_mark::{performance_mark, LogContext}
-/// 
+///
 /// #[performance_mark(async log_with_this)]
 /// fn test_function_logged_using_custom_function() {
 ///    println!("Hello!");
 /// }
-/// 
+///
 /// async fn log_with_this(ctx: LogContext) {
 ///     // Log asynchronously
 /// }

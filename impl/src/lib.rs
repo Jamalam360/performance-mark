@@ -1,6 +1,6 @@
 //! This crate implements the macro for `performance_mark` and should not be used directly.
 
-use proc_macro2::{TokenStream, TokenTree, Ident};
+use proc_macro2::{Ident, TokenStream, TokenTree};
 use quote::{ToTokens, TokenStreamExt};
 use syn::{
     parse2, parse_quote,
