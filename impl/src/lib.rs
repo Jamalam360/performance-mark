@@ -1,7 +1,7 @@
 //! This crate implements the macro for `performance_mark` and should not be used directly.
 
-use proc_macro2::{Ident, TokenStream, TokenTree};
-use quote::{ToTokens, TokenStreamExt};
+use proc_macro2::{TokenStream, TokenTree};
+use quote::ToTokens;
 use syn::{
     parse2, parse_quote,
     spanned::Spanned,
@@ -22,22 +22,29 @@ pub fn performance_mark(attr: TokenStream, item: TokenStream) -> Result<TokenStr
     };
 
     let mut asyncness = false;
-    let mut log_function = None;
+    let mut log_function = Vec::new();
 
     for token in attr {
-        match token {
-            TokenTree::Ident(ref ident) => {
+        match &token {
+            TokenTree::Ident(ident) => {
                 if ident.to_string() == "async" {
                     asyncness = true;
-                } else if log_function.is_none() {
-                    log_function = Some(ArbitraryFunction(ident.clone()))
                 } else {
-                    return Err(syn::Error::new(token.span(), "Unexpected token"));
+                    log_function.push(token);
                 }
+            }
+            TokenTree::Punct(_) => {
+                log_function.push(token);
             }
             _ => return Err(syn::Error::new(token.span(), "Unexpected token")),
         }
     }
+
+    let log_function = if log_function.is_empty() {
+        None
+    } else {
+        Some(ArbitraryFunction(&log_function))
+    };
 
     let start_stmt: Stmt = parse_quote!(let start = std::time::Instant::now(););
 
@@ -45,7 +52,7 @@ pub fn performance_mark(attr: TokenStream, item: TokenStream) -> Result<TokenStr
 
     let function_name = item.sig.ident.to_string();
     let mut end_stmts: Vec<Stmt> = parse_quote! {
-        let ctx = performance_mark::LogContext {
+        let ctx = performance_mark_attribute::LogContext {
             function: #function_name.to_string(),
             duration: std::time::Instant::now().duration_since(start),
         };
@@ -143,10 +150,12 @@ impl<'a> ToTokens for VecStmt<'a> {
     }
 }
 
-struct ArbitraryFunction(Ident);
+struct ArbitraryFunction<'a>(&'a Vec<TokenTree>);
 
-impl ToTokens for ArbitraryFunction {
+impl<'a> ToTokens for ArbitraryFunction<'a> {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        tokens.append(self.0.clone());
+        for token in self.0.iter() {
+            token.to_tokens(tokens);
+        }
     }
 }
