@@ -7,7 +7,7 @@ method.
 Basic example:
 
 ```rust
-use performance_mark::performance_mark;
+use performance_mark_attribute::performance_mark;
 
 #[performance_mark]
 fn test_function_logged_using_stdout() {
@@ -24,7 +24,7 @@ Output:
 ## Custom Logging Method
 
 ```rust
-use performance_mark::{performance_mark, LogContext}
+use performance_mark_attribute::{performance_mark, LogContext}
 
 #[performance_mark(log_with_this)]
 fn test_function_logged_using_custom_function() {
@@ -39,7 +39,7 @@ fn log_with_this(ctx: LogContext) {
 ## Custom Async Logging Method
 
 ```rust
-use performance_mark::{performance_mark, LogContext}
+use performance_mark_attribute::{performance_mark, LogContext}
 
 #[performance_mark(async log_with_this)]
 fn test_function_logged_using_custom_function() {

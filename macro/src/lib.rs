@@ -10,7 +10,7 @@ use syn::parse_macro_input;
 ///
 /// Basic example:
 /// ```no_run no_test
-/// use performance_mark::performance_mark;
+/// use performance_mark_attribute::performance_mark;
 ///
 /// #[performance_mark]
 /// fn test_function_logged_using_stdout() {
@@ -20,7 +20,7 @@ use syn::parse_macro_input;
 ///
 /// Example with a custom logging method:
 /// ```no_run no_test
-/// use performance_mark::{performance_mark, LogContext}
+/// use performance_mark_attribute::{performance_mark, LogContext}
 ///
 /// #[performance_mark(log_with_this)]
 /// fn test_function_logged_using_custom_function() {
@@ -34,7 +34,7 @@ use syn::parse_macro_input;
 ///
 /// Example with a custom async logging method:
 /// ```no_run no_test
-/// use performance_mark::{performance_mark, LogContext}
+/// use performance_mark_attribute::{performance_mark, LogContext}
 ///
 /// #[performance_mark(async log_with_this)]
 /// fn test_function_logged_using_custom_function() {
