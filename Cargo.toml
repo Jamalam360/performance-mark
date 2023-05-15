@@ -15,11 +15,11 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-performance-mark-macro = { version = "^0.1.0", path = "macro" }
+performance-mark-macro = { version = "^0.2.0", path = "macro" }
 
 [workspace]
 members = [".", "impl", "macro"]
 default-members = [".", "impl"]
 
 [workspace.package]
-version = "0.1.0"
+version = "0.2.0"
